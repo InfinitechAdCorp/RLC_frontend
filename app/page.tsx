@@ -157,12 +157,30 @@ export default function Home() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
-          <ContactusForm onSubmit={handleFormSubmit} /> {/* Pass onSubmit here */}
-        </div>
-      </section>
+   
+<section className="py-16 bg-white">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8 text-center">Contact Us</h2>
+    <div className="flex flex-col md:flex-row gap-8">
+      {/* Google Maps on the left side */}
+      <div className="w-full md:w-1/2 h-80 md:h-auto bg-gray-200 rounded-xl">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4353.838475396577!2d121.05725761116753!3d14.591050585835323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c819abf9fa0f%3A0xd6de5ad44fb87ee1!2sRobinsons%20Galleria%20Ortigas!5e1!3m2!1sen!2sph!4v1742526696179!5m2!1sen!2sph"
+          width="100%"
+          height="100%"
+          style={{ border: "0" }}
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      {/* Contact Form on the right side */}
+      <div className="w-full md:w-1/2 bg-white shadow-xl rounded-xl p-8 md:p-12">
+        <ContactusForm onSubmit={handleFormSubmit} />
+      </div>
+    </div>
+  </div>
+</section>
     </>
   );
 }

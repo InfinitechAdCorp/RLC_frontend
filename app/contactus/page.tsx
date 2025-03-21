@@ -2,8 +2,7 @@
 
 import { title } from "@/components/primitives";
 import { useState, useEffect } from "react";
-import { Form } from "@heroui/form";
-
+import { ContactusForm } from "@/components/ContactusLayout"; // Import ContactusForm
 export default function ContactusPage() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -16,7 +15,7 @@ export default function ContactusPage() {
     awarenessSource: "",
     message: "",
   });
-
+  
   const [countries, setCountries] = useState<string[]>([]);
 
   useEffect(() => {
@@ -43,57 +42,33 @@ export default function ContactusPage() {
     console.log("Form Data Submitted: ", formData);
     alert("Message Sent!");
   };
-
+  const handleFormSubmit = (formData: any) => {
+    // Handle form submission here, such as sending the data to an API or logging it
+    console.log(formData);
+  };
   return (
-    <div className="max-w-lg mx-auto p-8">
-      <h1 className={title()}>Get in Touch With Us!</h1>
-      <p className="text-gray-600 mb-4">Please feel free to call, email, or chat with us to find out more about which RLC Residences property is best for you.</p>
-      
-      {/* Card Container */}
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <Form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Section */}
-          <div className="flex gap-4">
-            <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-            <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-          </div>
+<section className="py-16 bg-white">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8 text-center">Contact Us</h2>
+    <div className="flex flex-col md:flex-row gap-8">
+      {/* Google Maps on the left side */}
+      <div className="w-full md:w-1/2 h-80 md:h-auto bg-gray-200 rounded-xl">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4353.838475396577!2d121.05725761116753!3d14.591050585835323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c819abf9fa0f%3A0xd6de5ad44fb87ee1!2sRobinsons%20Galleria%20Ortigas!5e1!3m2!1sen!2sph!4v1742526696179!5m2!1sen!2sph"
+          width="100%"
+          height="100%"
+          style={{ border: "0" }}
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
+      </div>
 
-          {/* Contact Section */}
-          <div className="flex gap-4">
-            <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-            <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-          </div>
-
-          {/* Country and Property Section */}
-          <div className="flex gap-4">
-            <select name="country" value={formData.country} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded">
-              <option value="">Select Country</option>
-              {countries.map((country) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <input type="text" name="property" placeholder="Property" value={formData.property} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-          </div>
-
-          {/* Inquiry and Awareness Section */}
-          <div className="flex gap-4">
-            <select name="inquiryType" value={formData.inquiryType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded">
-              <option value="">Type of Inquiry</option>
-              <option value="New Client">New Client</option>
-              <option value="Repeat Client">Repeat Client</option>
-              <option value="After Sales">After Sales</option>
-              <option value="Other">Other</option>
-            </select>
-            <input type="text" name="awarenessSource" placeholder="Source of Awareness" value={formData.awarenessSource} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-          </div>
-
-          {/* Message Section */}
-          <textarea name="message" placeholder="Message" value={formData.message} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
-          
-          {/* Submit Button */}
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Send Message</button>
-        </Form>
+      {/* Contact Form on the right side */}
+      <div className="w-full md:w-1/2 bg-white shadow-xl rounded-xl p-8 md:p-12">
+        <ContactusForm onSubmit={handleFormSubmit} />
       </div>
     </div>
+  </div>
+  </section>
   );
 }
