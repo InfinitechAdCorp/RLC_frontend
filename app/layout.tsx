@@ -1,13 +1,14 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
-import clsx from "clsx";
 
-import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import '@/styles/globals.css';
+import { Metadata, Viewport } from 'next';
+import { Link } from '@heroui/link';
+import clsx from 'clsx';
+import { Providers } from './providers';
+import { siteConfig } from '@/config/site';
+import { fontSans } from '@/config/fonts';
+import { Navbar } from '@/components/navbar';
+import { FloatingSocialIcons } from '@/components/FloatingSocialIcons';
 
 export const metadata: Metadata = {
   title: {
@@ -16,38 +17,34 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/rlcfavicon.png",
+    icon: '/rlcfavicon.png',
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        {/* Font Awesome for icons */}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+      </head>
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
+          'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            
-            {/* Full-screen Banner Section */}
-            
-            
+            <FloatingSocialIcons />
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
               {children}
             </main>

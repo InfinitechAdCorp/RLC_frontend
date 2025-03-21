@@ -2,6 +2,7 @@
 
 import { title } from "@/components/primitives";
 import { useState, useEffect } from "react";
+import { Form } from "@heroui/form";
 
 export default function ContactusPage() {
   const [formData, setFormData] = useState({
@@ -50,7 +51,7 @@ export default function ContactusPage() {
       
       {/* Card Container */}
       <div className="bg-white shadow-lg rounded-lg p-6">
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <Form onSubmit={handleSubmit} className="space-y-4">
           {/* Name Section */}
           <div className="flex gap-4">
             <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded" />
@@ -91,7 +92,7 @@ export default function ContactusPage() {
           
           {/* Submit Button */}
           <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Send Message</button>
-        </form>
+        </Form>
       </div>
     </div>
   );

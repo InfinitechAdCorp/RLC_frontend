@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { ContactusForm } from "@/components/ContactusLayout"; // Import ContactusForm
 
 export default function Home() {
   const [showCards, setShowCards] = useState([false, false, false]);
@@ -25,9 +26,11 @@ export default function Home() {
       title: "I'm a Renter",
       description: "We ensure a seamless home-buying experience.",
     },
-    
   ];
-
+  const handleFormSubmit = (formData: any) => {
+    // Handle form submission here, such as sending the data to an API or logging it
+    console.log(formData);
+  };
   return (
     <>
       {/* Hero Section */}
@@ -54,14 +57,23 @@ export default function Home() {
             {cardData.map((card, index) => (
               <div
                 key={index}
-                className="w-full md:w-1/3 p-6 bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-lg"
+                className="w-full md:w-1/3 p-6 bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-lg flex flex-col justify-between"
               >
-                <h3 className="text-white text-xl md:text-2xl font-bold mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-white text-sm md:text-base">
-                  {card.description}
-                </p>
+                <div>
+                  <h3 className="text-white text-xl md:text-2xl font-bold mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-white text-sm md:text-base mb-4">
+                    {card.description}
+                  </p>
+                </div>
+                <button className="mt-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                  {index === 0
+                    ? 'Find Your Home'
+                    : index === 1
+                    ? 'Explore Investment Opportunities'
+                    : 'Start Your Search'}
+                </button>
               </div>
             ))}
           </div>
@@ -70,81 +82,87 @@ export default function Home() {
 
       {/* Discover Section */}
       <section className="py-16 bg-gray-100">
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl font-bold text-center mb-8">Discover Your Path</h2>
-    <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center">
-      
-      {/* Card 1 */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
-      >
-        <img
-          src="/RLC-Residences.jpg"
-          alt="A Future-Proof Investment"
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-bold mb-2">A Future-Proof Investment</h3>
-        <p className="text-gray-600">Watch your property grow in value over time.</p>
-        <a href="#" className="text-blue-500 mt-4 inline-block">Learn More</a>
-      </motion.div>
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Discover Your Path</h2>
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center">
+            {/* Card 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
+            >
+              <img
+                src="/RLC-Residences.jpg"
+                alt="A Future-Proof Investment"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">A Future-Proof Investment</h3>
+              <p className="text-gray-600">Watch your property grow in value over time.</p>
+              <a href="#" className="text-blue-500 mt-4 inline-block">View Property</a>
+            </motion.div>
 
-      {/* Card 2 */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
-      >
-        <img
-          src="/RLC-Residences.jpg"
-          alt="A Location That Works for You"
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-bold mb-2">A Location That Works for You</h3>
-        <p className="text-gray-600">Stay close to business hubs, leisure spots, and daily essentials—right where you need to be.</p>
-        <a href="#" className="text-blue-500 mt-4 inline-block">Learn More</a>
-      </motion.div>
+            {/* Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
+            >
+              <img
+                src="/RLC-Residences.jpg"
+                alt="A Location That Works for You"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">A Location That Works for You</h3>
+              <p className="text-gray-600">Stay close to business hubs, leisure spots, and daily essentials—right where you need to be.</p>
+              <a href="#" className="text-blue-500 mt-4 inline-block">View Property</a>
+            </motion.div>
 
-      {/* Card 3 */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
-      >
-        <img
-          src="/RLC-Residences.jpg"
-          alt="A Space That Adapts With You"
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-bold mb-2">A Space That Adapts With You</h3>
-        <p className="text-gray-600">Enhance everyday life with spaces thoughtfully crafted for your comfort and lifestyle.</p>
-        <a href="#" className="text-blue-500 mt-4 inline-block">Learn More</a>
-      </motion.div>
+            {/* Card 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
+            >
+              <img
+                src="/RLC-Residences.jpg"
+                alt="A Space That Adapts With You"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">A Space That Adapts With You</h3>
+              <p className="text-gray-600">Enhance everyday life with spaces thoughtfully crafted for your comfort and lifestyle.</p>
+              <a href="#" className="text-blue-500 mt-4 inline-block">View Property</a>
+            </motion.div>
 
-      {/* Card 4 */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
-      >
-        <img
-          src="/RLC-Residences.jpg"
-          alt="A Plan That Meets Your Budget"
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-bold mb-2">A Plan That Meets Your Budget</h3>
-        <p className="text-gray-600">Own a home that aligns with your financial goals.</p>
-      </motion.div>
-      
-    </div>
-  </div>
-</section>
+            {/* Card 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="w-full md:w-1/3 p-6 bg-white rounded-xl shadow-lg"
+            >
+              <img
+                src="/RLC-Residences.jpg"
+                alt="A Plan That Meets Your Budget"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">A Plan That Meets Your Budget</h3>
+              <p className="text-gray-600">Own a home that aligns with your financial goals.</p>
+              <a href="#" className="text-blue-500 mt-4 inline-block">View Property</a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
+      {/* Contact Us Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
+          <ContactusForm onSubmit={handleFormSubmit} /> {/* Pass onSubmit here */}
+        </div>
+      </section>
     </>
   );
 }
